@@ -17,6 +17,9 @@ jobs:
     steps:
       - *attach_workspace
       - checkout
+      - run: |
+          git submodule sync
+          git submodule update --init
       - run:
           name: Install Zola
           command: |
