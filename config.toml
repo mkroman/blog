@@ -1,7 +1,7 @@
 title = "mk's blog"
 
 # The URL the site will be built for
-base_url = "maero.dk"
+base_url = "https://maero.dk"
 
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = true
