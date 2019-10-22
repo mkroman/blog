@@ -42,6 +42,8 @@ jobs:
       - aws-s3/sync:
           from: /tmp/workspace/public/
           to: s3://mkroman-blog
+          arguments: |
+            --acl public-read
           overwrite: true
 
 workflows:
