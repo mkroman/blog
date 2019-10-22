@@ -31,7 +31,8 @@ jobs:
             zola build -o /tmp/workspace/public
       - persist_to_workspace:
           root: *workspace_root
-          path: public
+          paths:
+            - public
 
   publish:
     docker:
@@ -39,7 +40,7 @@ jobs:
     steps:
       - *attach_workspace
       - aws-s3/sync:
-          from: *workspace_root
+          from: /tmp/workspace/public/
           to: s3://mkroman-blog
           overwrite: true
 
