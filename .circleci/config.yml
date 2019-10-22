@@ -1,0 +1,60 @@
+version: 2.1
+
+anchors:
+  workspace_root: &workspace_root
+    /tmp/workspace
+  attach_workspace: &attach_workspace
+    attach_workspace:
+      at: *workspace_root
+
+orbs:
+  aws-s3: circleci/aws-s3@1.0.11
+
+jobs:
+  build:
+    docker:
+      - image: circleci/buildpack-deps:buster
+    steps:
+      - *attach_workspace
+      - checkout
+      - run:
+        name: Install Zola
+        command: |
+          curl -s -L https://github.com/getzola/zola/releases/download/v0.9.0/zola-v0.9.0-x86_64-unknown-linux-gnu.tar.gz | sudo tar xvzf - -C /usr/local/bin
+      - run:
+        name: Build static website
+        command: |
+          mkdir -p /tmp/workspace
+          zola build -o /tmp/workspace
+      - persist_to_workspace:
+        root: *workspace_root
+
+  publish:
+    docker:
+      - image: 'circleci/python:2.7'
+    steps:
+      - *attach_workspace
+      - aws-s3/sync:
+        from: *workspace_root
+        to: s3://mkroman-blog
+        overwrite: true
+
+workflows:
+  version: 2
+
+  build-deploy:
+    jobs:
+      - build:
+        filters:
+          branches:
+            only:
+              - master
+              - circle-ci
+      - publish:
+        filters:
+          branches:
+            only:
+              - master
+              - circle-ci
+        requires:
+          - build
