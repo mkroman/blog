@@ -13,7 +13,7 @@ highlight_code = true
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = true
 
-theme = "after-dark"
+theme = "even"
 
 generate_rss = true
 
@@ -24,11 +24,11 @@ taxonomies = [
 ]
 
 [extra]
-author = "Mikkel Kroman"
-after_dark_title = "mk's blog"
-after_dark_menu = [
+even_menu = [
     {url = "/", name = "Home"},
     {url = "/categories", name = "Categories"},
     {url = "/tags", name = "Tags"},
-    {url = "https://github.com/mkroman", name = "GitHub"},
+    {url = "/about", name = "About"},
 ]
+even_title = "mk's blog"
+author = "Mikkel Kroman"
