@@ -21,7 +21,7 @@ The official claim is that this device will run off of a single CR2032 battery
 for up to 2 years.
 
 {{
-  thumbnailed_image(path='aqara-temperature-humidity-pressure-sensor-teardown/pictures/aqara-temperature-front.jpg')
+  thumbnailed_image(path='aqara-temperature-humidity-pressure-sensor-teardown/aqara-temperature-front.jpg')
   }}
 
 ## Opening the clam shell
@@ -32,13 +32,13 @@ corners to get some leverage, and then use a thin metal prying tool to break it
 open.
 
 {{
-  thumbnailed_image(path='aqara-temperature-humidity-pressure-sensor-teardown/pictures/prying-open.jpg')
+  thumbnailed_image(path='aqara-temperature-humidity-pressure-sensor-teardown/prying-open.jpg')
   }}
 
 The unit is comprised of 4 parts - the clam shells, a button and the PCB.
 
 {{
-  thumbnailed_image(path='aqara-temperature-humidity-pressure-sensor-teardown/pictures/parts.jpg')
+  thumbnailed_image(path='aqara-temperature-humidity-pressure-sensor-teardown/parts.jpg')
   }}
 
 ## PCB close-ups
@@ -46,11 +46,11 @@ The unit is comprised of 4 parts - the clam shells, a button and the PCB.
 I saved images of each side of the PCB
 
 {{
-  thumbnailed_image(path='aqara-temperature-humidity-pressure-sensor-teardown/pictures/front-pcb.png')
+  thumbnailed_image(path='aqara-temperature-humidity-pressure-sensor-teardown/front-pcb.png')
   }}
 
 {{
-  thumbnailed_image(path='aqara-temperature-humidity-pressure-sensor-teardown/pictures/back-pcb.png')
+  thumbnailed_image(path='aqara-temperature-humidity-pressure-sensor-teardown/back-pcb.png')
   }}
 
 The main microcontroller is an [NXP JN5169][1] which contains a 32-bit RISC
@@ -60,14 +60,14 @@ The temperature/humidity sensor is an [Sensiron SHT30][2] which has a typical
 %RH resolution of ±2 at 10-90% RH and ±0.3°C in the range of 0-65°C
 
 {{
-  thumbnailed_image(path='aqara-temperature-humidity-pressure-sensor-teardown/pictures/sht30.jpg')
+  thumbnailed_image(path='aqara-temperature-humidity-pressure-sensor-teardown/sht30.jpg')
   }}
 
 Since the SHT30 doesn't feature integrated pressure sensing, there's also this
 `6A2` sensor which I haven't been able to identify.
 
 {{
-  thumbnailed_image(path='aqara-temperature-humidity-pressure-sensor-teardown/pictures/ga2.jpg')
+  thumbnailed_image(path='aqara-temperature-humidity-pressure-sensor-teardown/ga2.jpg')
   }}
 
 ### Tracing out some test pads
@@ -80,7 +80,7 @@ I made an annotated image with the pads I identified after a quick 5 minute
 tracing:
 
 {{
-  thumbnailed_image(path='aqara-temperature-humidity-pressure-sensor-teardown/pictures/front-pcb-annotated.jpg')
+  thumbnailed_image(path='aqara-temperature-humidity-pressure-sensor-teardown/front-pcb-annotated.jpg')
   }}
 
 
