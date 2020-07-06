@@ -8,8 +8,8 @@ anchors:
       at: *workspace_root
 
 orbs:
-  aws-s3: circleci/aws-s3@1.0.11
-  aws-cli: circleci/aws-cli@0.1.16
+  aws-s3: circleci/aws-s3@1.0.15
+  aws-cli: circleci/aws-cli@1.2.1
 
 jobs:
   build:
