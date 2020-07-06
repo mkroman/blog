@@ -24,7 +24,11 @@ jobs:
       - run:
           name: Install Zola
           command: |
-            curl -s -L https://github.com/getzola/zola/releases/download/v0.10.0/zola-v0.10.0-x86_64-unknown-linux-gnu.tar.gz | sudo tar xvzf - -C /usr/local/bin
+            set -e
+            curl -s -L https://github.com/getzola/zola/releases/download/v0.11.0/zola-v0.11.0-x86_64-unknown-linux-gnu.tar.gz -o zola.tar.gz
+            echo "8afe40edff5e995afdc132e02442d24eb633ef4b6e81913d69cf97f17905b9c3  zola.tar.gz" | sha256sum -c
+            sudo tar xvzf zola.tar.gz -C /usr/local/bin
+            rm zola.tar.gz
       - run:
           name: Build static website
           command: |
