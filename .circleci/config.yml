@@ -9,7 +9,7 @@ anchors:
 
 orbs:
   aws-s3: circleci/aws-s3@2.0.0
-  aws-cli: circleci/aws-cli@1.2.1
+  aws-cli: circleci/aws-cli@1.3.0
 
 jobs:
   build:
