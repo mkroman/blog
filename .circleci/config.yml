@@ -65,13 +65,13 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - main
                 - circle-ci
       - publish:
           filters:
             branches:
               only:
-                - master
+                - main
                 - circle-ci
           requires:
             - build
