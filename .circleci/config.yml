@@ -25,8 +25,8 @@ jobs:
           name: Install Zola
           command: |
             set -e
-            curl -s -L https://github.com/getzola/zola/releases/download/v0.11.0/zola-v0.11.0-x86_64-unknown-linux-gnu.tar.gz -o zola.tar.gz
-            echo "8afe40edff5e995afdc132e02442d24eb633ef4b6e81913d69cf97f17905b9c3  zola.tar.gz" | sha256sum -c
+            curl -s -L https://github.com/getzola/zola/releases/download/v0.12.2/zola-v0.12.2-x86_64-unknown-linux-gnu.tar.gz -o zola.tar.gz
+            echo "572e34c4c2b874f9704fb8512abea84532623f7567996bac456291a21c1b2595  zola.tar.gz" | sha256sum -c
             sudo tar xvzf zola.tar.gz -C /usr/local/bin
             rm zola.tar.gz
       - run:
@@ -41,7 +41,7 @@ jobs:
 
   publish:
     docker:
-      - image: 'circleci/python:2.7'
+      - image: 'circleci/python:buster'
     steps:
       - *attach_workspace
       - aws-s3/sync:
