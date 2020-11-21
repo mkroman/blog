@@ -1,0 +1,5 @@
+type,name,comment
+uint32_t,magicCode,'BFXP'
+uint32_t,rivision,
+Boot_Flash_Config,flashCfg,
+Boot_Clk_Config,clkCfg,

@@ -1,0 +1,4 @@
+type,name,comment
+uint32_t,magicCode,'PCFG'
+Boot_Sys_Clk_Config,cfg,
+uint32_t,crc32,

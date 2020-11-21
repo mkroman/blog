@@ -1,0 +1,8 @@
+type,name,comment
+uint8_t,xtalType,
+uint8_t,pllClk,
+uint8_t,hclkDiv,
+uint8_t,bclkDiv,
+uint8_t,flashClkType,
+uint8_t,flashClkDiv,
+uint8_tx2,rsvd[2],
