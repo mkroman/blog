@@ -32,8 +32,9 @@ jobs:
       - run:
           name: Build static website
           command: |
-            mkdir -p /tmp/workspace
+            mkdir -p /tmp/{workspace,drafts}
             zola build -o /tmp/workspace/public
+            zola build --drafts -o /tmp/workspace/drafts
       - persist_to_workspace:
           root: *workspace_root
           paths:
@@ -54,6 +55,22 @@ jobs:
           name: Invalidate CloudFront cache
           command: |
             aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
+
+  publish-drafts:
+    docker:
+      - image: 'circleci/python:buster'
+    steps:
+      - *attach_workspace
+      - aws-s3/sync:
+          from: /tmp/workspace/drafts/
+          to: s3://mkroman-blog-draft
+          arguments: |
+            --acl public-read
+      - aws-cli/setup
+      - run:
+          name: Invalidate CloudFront cache
+          command: |
+            aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID_DRAFTS --paths "/*"
 
 workflows:
   version: 2
