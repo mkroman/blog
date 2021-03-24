@@ -39,6 +39,7 @@ jobs:
           root: *workspace_root
           paths:
             - public
+            - drafts
 
   publish:
     docker:
@@ -84,6 +85,14 @@ workflows:
                 - main
                 - circle-ci
       - publish:
+          filters:
+            branches:
+              only:
+                - main
+                - circle-ci
+          requires:
+            - build
+      - publish-drafts:
           filters:
             branches:
               only:
