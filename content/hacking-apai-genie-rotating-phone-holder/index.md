@@ -1,6 +1,7 @@
 +++
 title = "Hacking the Apai Genie Rotating Phone Holder"
 date = 2021-05-04
+draft = true
 
 [taxonomies]
 tags = ["teardown", "apai", "genie", "rotating", "phone", "holder", "qmcx",
