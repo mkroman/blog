@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  push:
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v3
+    - name: Install Zola
+      run: |
+        set -e
+        curl -s -L https://github.com/getzola/zola/releases/download/v0.15.2/zola-v0.15.2-x86_64-unknown-linux-gnu.tar.gz -o zola.tar.gz
+        echo "d067e8261f0a9121ea0388616f74fcba4b1ed87df8ea78ca20a577424c15fa20  zola.tar.gz" | sha256sum -c
+        sudo tar xvzf zola.tar.gz -C /usr/local/bin
+        rm zola.tar.gz
+    - name: Build static website
+      run: |
+        mkdir -p /tmp/workspace
+        zola build -o /tmp/workspace/public
+    - name: Archive static website
+      uses: actions/upload-artifact@v2
+      with:
+        name: static-website
+        path: /tmp/workspace/public
+
+  publish:
+    runs-on: ubuntu-latest
+    needs:
+    - build
+
+    # AWS secret env variables
+    env:
+      AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
+      AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    - name: Download static website archive
+      uses: actions/download-artifact@v2
+      with:
+        name: static-website
+    - name: Upload website to S3
+      run: |
+        aws s3 sync --delete --acl public-read . "s3://${AWS_BUCKET_NAME}/"
+    - name: Invalidate CloudFront cache
+      run: |
+        aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
