@@ -53,12 +53,107 @@ the relay server and share messages encrypted and authenticated using
 For simplicity and efficiency, the protocol is binary-encoded using
 network-endian data types.
 
-### Packets
+## Packets
 
-#### Encapsulation
+### Encapsulation
 
 Each packet is prefixed by a header that determines the type as well as the
 length of the packet.
+
+### Format
+
+#### SERVER_HELLO
+
+The servers response to `CLIENT_HELLO`.
+
+###### Fields
+
+| Offset | Size (bytes) | Field            | Description                                       |
+| ------ | ------------ | ---------------- | ------------------------------------------------- |
+| 0x00   | 0x02         | protocol_version | The current protocol version                      |
+| 0x02   | 0x100        | server_pk        | The servers public key                            |
+| 0x102  | 0x20         | challenge        | A random 256-bit challenge for the client to sign |
+
+#### CLIENT_HELLO
+
+The first message that the client sends to the server upon connection, which includes the
+protocol version.
+
+#### Fields
+
+| Offset   | Size (bytes) | Field            | Description                  |
+| -------- | ------------ | ---------------- | ---------------------------- |
+| 0x00     | 0x100        | client_pkey      | The clients public key       |
+| 0x100    | 0x140?       | signed_prekey    | The clients signed prekey    |
+| 0x240    | TBD          | prekey_signature | The clients prekey signature |
+
+#### LINK_CREATE
+
+##### Fields
+
+No fields.
+
+#### LINK_OPEN
+
+The client wants the server to open a link between the current client and the client with
+the given `client_key`
+
+This is forwarded to the target client.
+
+##### Fields
+
+| Offset | Size (bytes) | Field       | Description                            |
+| ------ | ------------ | ----------- | -------------------------------------- |
+| 0x00   | 0x100        | target_pkey | The target clients public identity key |
+| 0x100  | 0x20         | challenge   | Challenge for target_pkey to sign      |
+
+#### LINK_CHALLENGE
+
+The relay wants the client to authenticate a challenge with its public key.
+
+##### Fields
+
+| Offset | Size (bytes) | Field     | Description               |
+| ------ | ------------ | --------- | ------------------------- |
+| 0x00   | 0x20         | challenge | Challenge to authenticate |
+
+#### LINK_CHALLENGE_RESPONSE
+
+The signed response to a LINK_CHALLENGE.
+
+##### Fields
+
+| Offset | Size (bytes) | Field     | Description               |
+| ------ | ------------ | --------- | ------------------------- |
+| 0x00   | 0x20         | challenge | Challenge to authenticate |
+
+#### LINK_ACK
+
+The client acknowledges and agrees to open an encrypted channel
+
+This is forwarded to the target client.
+
+##### Fields
+
+| Offset | Size (bytes) | Field               | Description                                                |
+| ------ | ------------ | ------------------- | ---------------------------------------------------------- |
+| 0x00   | 0x100        | target_pub_identity | The target clients public identity key                     |
+| 0x100  | 0x110        | cipher_pub_key      | Authenticated ciphertext of the requesting clients pub key |
+
+#### LINK_NACK
+
+The client disagrees to open a link.
+
+This is forwarded to the target client.
+
+###### Fields
+
+| Offset | Size (bytes) | Field               | Description                                                |
+| ------ | ------------ | ------------------- | ---------------------------------------------------------- |
+| 0x00   | 0x100        | target_pub_identity | The target clients public identity key                     |
+| 0x100  | 0x110        | cipher_pub_key      | Authenticated ciphertext of the requesting clients pub key |
+
+#### ALERT
 
 # Acknowledgements
 

@@ -15,6 +15,9 @@ theme = "even"
 
 generate_rss = true
 
+# Minify the generated HTML
+minify_html = true
+
 taxonomies = [
     # You can enable/disable RSS
     {name = "categories", rss = true},
