@@ -1,5 +1,9 @@
 {% extends "even/templates/index.html" %}
 
+{% block extra_head %}
+  <link rel="me" href="https://hachyderm.io/@mkroman" />Mastodon
+{% endblock extra_head %}
+
 {% block js %}
   <script src="{{ get_url(path='scripts/slideout.min.js') }}" async></script>
 {% endblock js %}
