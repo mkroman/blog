@@ -11,5 +11,9 @@
 {% endblock extra_head %}
 
 {% block js %}
-  <script src="{{ get_url(path='scripts/slideout.min.js') }}" async></script>
+  <script
+    src="{{ get_url(path='scripts/slideout.min.js') }}"
+    integrity="sha256-{{ get_hash(path='scripts/slideout.min.js', sha_type=256, base64=true) | safe }}"
+    async>
+  </script>
 {% endblock js %}
