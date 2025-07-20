@@ -82,8 +82,8 @@ The video can be found
 
 ## External links
 
-* [Product Page](https://vaporshop.pl/en/5074-2554-x-max-v3-pro-plus-420vape-vaporizer-for-herbs.html) [(archived)](https://web.archive.org/web/20240525064434/https://vaporshop.pl/en/5074-2554-x-max-v3-pro-plus-420vape-vaporizer-for-herbs.html)
-* [iFixit Teardown](https://www.ifixit.com/Guide/XMAX+V3+Pro+Disassembly/157413) [(archived)](https://web.archive.org/web/20240525064807/https://www.ifixit.com/Guide/XMAX+V3+Pro+Disassembly/157413)
-* [N32G031 Overview](https://www.nationstech.com/en/N32G031SIC/) [(archived)](https://web.archive.org/web/20240225155901/https://www.nationstech.com/en/N32G031SIC/)
+* [Product Page](https://vaporshop.pl/en/5074-2554-x-max-v3-pro-plus-420vape-vaporizer-for-herbs.html) ([archived](https://web.archive.org/web/20240525064434/https://vaporshop.pl/en/5074-2554-x-max-v3-pro-plus-420vape-vaporizer-for-herbs.html))
+* [iFixit Teardown](https://www.ifixit.com/Guide/XMAX+V3+Pro+Disassembly/157413) ([archived](https://web.archive.org/web/20240525064807/https://www.ifixit.com/Guide/XMAX+V3+Pro+Disassembly/157413))
+* [N32G031 Overview](https://www.nationstech.com/en/N32G031SIC/) ([archived](https://web.archive.org/web/20240225155901/https://www.nationstech.com/en/N32G031SIC/))
 * [N32G031
-  Datasheet](https://www.nationstech.com/uploadfile/file/20220907/1662539811646982.pdf) [(archived)](https://web.archive.org/web/20240511014357/https://www.nationstech.com/uploadfile/file/20220907/1662539811646982.pdf)
+  Datasheet](https://www.nationstech.com/uploadfile/file/20220907/1662539811646982.pdf) ([archived](https://web.archive.org/web/20240511014357/https://www.nationstech.com/uploadfile/file/20220907/1662539811646982.pdf))
