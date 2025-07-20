@@ -11,15 +11,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         lfs: true
         submodules: true
     - name: Install Zola
       run: |
         set -e
-        curl -s -L https://github.com/getzola/zola/releases/download/v0.17.1/zola-v0.17.1-x86_64-unknown-linux-gnu.tar.gz -o zola.tar.gz
-        echo "f1ddbe0c1b0672da6eeb959eeb3f311b915ecc18719963934bcbc0c62783b711  zola.tar.gz" | sha256sum -c
+        curl -s -L https://github.com/getzola/zola/releases/download/v0.21.0/zola-v0.21.0-x86_64-unknown-linux-gnu.tar.gz -o zola.tar.gz
+        echo "5c37a8f706567d6cad3f0dbc0eaebe3b9591cc301bd67089e5ddc0d0401732d6  zola.tar.gz" | sha256sum -c
         sudo tar xvzf zola.tar.gz -C /usr/local/bin
         rm zola.tar.gz
     - name: Build static website
@@ -27,7 +27,7 @@ jobs:
         mkdir -p /tmp/workspace
         zola build -o /tmp/workspace/public
     - name: Archive static website
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: static-website
         path: /tmp/workspace/public
@@ -49,7 +49,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     - name: Download static website archive
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: static-website
     - name: Upload website to S3
